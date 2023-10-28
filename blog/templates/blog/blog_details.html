@@ -1,0 +1,196 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+
+{% endblock %}
+
+{% block contact %}
+    <!-- Breadcrumb -->
+    <section class="breadcrumb-area">
+        <div class="container">
+            <div class="breadcrumb-content" data-aos="fade-up">
+                <p>خانه - جزئیات وبلاگ</p>
+                <h1 class="section-heading"><img src="{% static 'images/star-2.png' %}" alt="Star"> جزئیات وبلاگ <img
+                        src="{% static 'images/star-2.png' %}" alt="Star"></h1>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Blog Details -->
+    <section class="blog-details-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="blog-details-content">
+                        <div class="img-box">
+                            <img src="{{ article.image.url }}" alt="Blog">
+                        </div>
+                        <span class="meta">{{ article.created }} - نظرات (4) - اشتراک گذاری (7)</span>
+                        <h1>{{ article.title }}</h1>
+                        <p>{{ article.author }}</p>
+                        <p>{{ article.category }}</p>
+                        <p>{{ article.body }}</p>
+                        <div class="tags">
+                            <a href="blog-details.html#" class="theme-btn">سس</a>
+                            <a href="blog-details.html#" class="theme-btn">توسعه</a>
+                        </div>
+
+                        <div class="comments-and-form-wrap">
+                            <div class="comments-and-form-wrap-inner shadow-box">
+                                <h2>{{ article.comments.count }}</h2>
+
+                                <div class="comments">
+                                    {% for comment in article.comments.all %}
+                                        {% if comment.parent_id == None %}
+                                            <div class="comment-list">
+                                                <div class="comment-avatar">
+                                                    {% if comment.user.profile.image %}
+                                                        <img src="{{ comment.user.profile.image.url }}"
+                                                             alt="َََ">
+                                                    {% else %}
+                                                        <img src="{% static 'images/profile_user.png' %}"
+                                                             alt="">
+                                                    {% endif %}                                                </div>
+                                                <div class="comment-body">
+                                                    <span class="date">{{ comment.created }}</span>
+                                                    <h3>{{ comment.user }}</h3>
+                                                    <p>{{ comment.body }}</p>
+                                                    <a onclick="set_value({{ comment.id }})"
+                                                       class="reply-btn theme-btn">پاسخ</a>
+                                                </div>
+                                            </div>
+                                            {% for reply in comment.replies.all %}
+                                                <div class="children">
+                                                    <div class="comment-list">
+                                                        <div class="comment-avatar">
+                                                            {% if reply.user.profile.image %}
+                                                                <img src="{{ reply.user.profile.image.url }}"
+                                                                     alt="َََ">
+                                                            {% else %}
+                                                                <img src="{% static 'images/profile_user.png' %}"
+                                                                     alt="">
+                                                            {% endif %}
+                                                        </div>
+                                                        <div class="comment-body">
+                                                            <span class="date">{{ reply.created }}</span>
+                                                            <h3>{{ reply.user }}</h3>
+                                                            <p>{{ reply.body }}</p>
+                                                            <a href="{{ reply.id }}"
+                                                               class="reply-btn theme-btn">پاسخ</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            {% endfor %}
+                                        {% endif %}
+                                    {% endfor %}
+                                </div>
+{#                                {% if reguest.user.is_authenticated %}#}
+                                    <div class="comment-form">
+                                        <h2>پاسخ دهید</h2>
+
+                                        <form method="post">
+                                            {% csrf_token %}
+                                            <div class="input-group">
+                                                <input type="text" name="name" placeholder="نام*">
+                                            </div>
+                                            <div class="input-group">
+                                                <input type="text" name="email" placeholder="ایمیل*">
+                                            </div>
+                                            <div class="input-group">
+                                                <textarea id='body' name="body" placeholder="پیام شما*"></textarea>
+                                            </div>
+                                            <div class="input-group">
+                                                <input type="hidden" id="parent_id" name="parent_id" value="">
+                                            </div>
+                                            <div class="input-group">
+                                                <button class="theme-btn" type="submit">ارسال پیام</button>
+                                            </div>
+                                        </form>
+                                    </div>
+{#                                {% else %}#}
+{#                                    <a class="btn btn-danger" href="{% url 'account:login' %}">for sending comment;#}
+{#                                        please login </a>#}
+{#                                {% endif %}#}
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="blog-sidebar">
+                        <div class="blog-sidebar-inner">
+
+                            <div class="blog-sidebar-widget search-widget">
+                                <div class="blog-sidebar-widget-inner" data-aos="zoom-in">
+                                    <form class="shadow-box">
+                                        <input type="text" placeholder="اینجا جستجو کنید...">
+                                        <button class="theme-btn">جستجو</button>
+                                    </form>
+                                </div>
+                            </div>
+
+                            <div class="blog-sidebar-widget recent-post-widget" data-aos="zoom-in">
+                                <div class="blog-sidebar-widget-inner shadow-box">
+                                    <h3> پست های اخیر</h3>
+
+                                    <ul>
+                                        <li><a href="blog-details.html">اعتراف مشورت شده قدرت حاد است.</a></li>
+                                        <li><a href="blog-details.html">درخواست های سیری ناپذیر ممکن است قدرت را جمع
+                                            آوری کند.</a></li>
+                                        <li><a href="blog-details.html">اکتشاف ناآرام با جدیت هیچ او دستور داد</a></li>
+                                        <li><a href="blog-details.html">درخواست های سیری ناپذیر ممکن است قدرت را جمع
+                                            آوری کند..</a></li>
+                                    </ul>
+
+                                </div>
+                            </div>
+
+                            <div class="blog-sidebar-widget categories-widget" data-aos="zoom-in">
+                                <div class="blog-sidebar-widget-inner shadow-box">
+                                    <h3>دسته بندی ها</h3>
+
+                                    <ul>
+                                        <li><a href="blog-details.html">-آنالیز</a></li>
+                                        <li><a href="blog-details.html">-دیواره آتش</a></li>
+                                        <li><a href="blog-details.html">-راه حل های فناوری اطلاعات</a></li>
+                                        <li><a href="blog-details.html">-امنیت</a></li>
+                                        <li><a href="blog-details.html">-فن آوری</a></li>
+                                    </ul>
+
+                                </div>
+                            </div>
+
+                            <div class="blog-sidebar-widget tags-widget" data-aos="zoom-in">
+                                <div class="blog-sidebar-widget-inner shadow-box">
+                                    <h3>تگ ها</h3>
+
+                                    <ul>
+                                        <li><a class="theme-btn" href="blog-details.html">سس</a></li>
+                                        <li><a class="theme-btn" href="blog-details.html">توسعه</a></li>
+                                        <li><a class="theme-btn" href="blog-details.html">UI/UX</a></li>
+                                        <li><a class="theme-btn" href="blog-details.html">وب</a></li>
+                                        <li><a class="theme-btn" href="blog-details.html">فیگما</a></li>
+                                        <li><a class="theme-btn" href="blog-details.html">جاوا</a></li>
+                                        <li><a class="theme-btn" href="blog-details.html">وردپرس</a></li>
+                                    </ul>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script>
+
+        function set_value(id) {
+            document.getElementById('parent_id').value = id;
+            window.location.href = '#body'
+        }
+
+    </script>
+{% endblock %}

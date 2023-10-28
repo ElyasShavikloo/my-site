@@ -12,7 +12,7 @@
             <div class="row">
                 <div class="col-md-6" data-aos="zoom-in">
                     <div class="about-me-box shadow-box">
-                        <a class="overlay-link" href="about.html"></a>
+                        <a class="overlay-link" href="{% url 'home:about' %}"></a>
                         <img src="{% static 'images/bg1.png' %}" alt="BG" class="bg-img">
                         <div class="img-box">
                             <img src="{% static 'images/mainphoto.jpg' %}" alt="About Me">
@@ -95,7 +95,7 @@
                     <div class="blog-service-profile-wrap d-flex gap-24">
                         <div data-aos="zoom-in">
                             <div class="about-blog-box info-box shadow-box h-full">
-                                <a href="blog.html" class="overlay-link"></a>
+                                <a href="{% url 'blog:blogs' %}" class="overlay-link"></a>
                                 <img src="{% static 'images/bg1.png' %}" alt="BG" class="bg-img">
                                 <img src="{% static 'images/gfonts.png' %}" alt="GFonts">
                                 <div class="d-flex align-items-center justify-content-between">
@@ -104,7 +104,7 @@
                                         <h1>فونت ها</h1>
                                     </div>
 
-                                    <a href="blog.html" class="about-btn">
+                                    <a href="{% url 'blog:blogs' %}" class="about-btn">
                                         <img id="rdt" src="{% static 'images/icon.svg' %}" alt="Button">
                                     </a>
 
