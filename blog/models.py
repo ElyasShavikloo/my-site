@@ -36,7 +36,7 @@ class Article(models.Model):
 
 
 class Comment(models.Model):
-    post = models.ForeignKey(Article, on_delete=models.CASCADE, related_name='comments')
+    article = models.ForeignKey(Article, on_delete=models.CASCADE, related_name='comments')
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='comments')
     parent_id = models.ForeignKey('self', on_delete=models.CASCADE, null=True, blank=True, related_name='replies')
     body = models.TextField()
@@ -44,3 +44,6 @@ class Comment(models.Model):
 
     def __str__(self):
         return self.body[:37]
+
+
+

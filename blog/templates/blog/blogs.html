@@ -24,7 +24,7 @@
             <div class="row">
                 <div class="col-md-8">
                     <div class="blog-items">
-                        {% for article in object_list %}
+                        {% for article in articles %}
                             <div class="blog-item" data-aos="zoom-in">
                                 <div class="img-box">
                                     <img src="{{ article.image.url }}" alt="Blog">
@@ -37,72 +37,43 @@
                                 </div>
                             </div>
                         {% endfor %}
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="blog-sidebar">
-                        <div class="blog-sidebar-inner">
+                        <br><br><br>
+                        <div class="col-lg-12">
+                            {% if page_obj.has_other_pages %}
+                                <ul class="pagination">
+                                    {% if page_obj.has_previous %}
+                                        <li class="prev"><a href="?page={{ page_obj.previous_page_number }}">
+                                            <span class="fa fa-arrow-left btn btn-primary"><<</span></a></li>
+                                    {% endif %}
 
-                            <div class="blog-sidebar-widget search-widget">
-                                <div class="blog-sidebar-widget-inner" data-aos="zoom-in">
-                                    <form class="shadow-box">
-                                        <input type="text" placeholder="اینجا جستجو کنید...">
-                                        <button class="theme-btn">جستجو</button>
-                                    </form>
-                                </div>
-                            </div>
 
-                            <div class="blog-sidebar-widget recent-post-widget" data-aos="zoom-in">
-                                <div class="blog-sidebar-widget-inner shadow-box">
-                                    <h3>پستهای اخیر</h3>
+                                    {% for item in page_obj.paginator.page_range %}
+                                        {% if page_obj.number == item %}
+                                            <li class="active"><span class="btn"><a href="?page=
+                                                {{ item }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">
+                                                {{ item }}
+                                            </a></span></li>
+                                        {% else %}
+                                            <li class="active"><span class="btn"><a href="?page=
+                                                {{ item }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">
+                                                {{ item }}
+                                            </a></span></li>
+                                        {% endif %}
+                                    {% endfor %}
 
-                                    <ul>
-                                        <li><a href="blog-details.html">اعتراف مشورت شده قدرت حاد است.</a></li>
-                                        <li><a href="blog-details.html">درخواست های سیری ناپذیر ممکن است قدرت را جمع
-                                            آوری کند.</a></li>
-                                        <li><a href="blog-details.html">اکتشاف ناآرام با جدیت هیچ او دستور داد</a></li>
-                                        <li><a href="blog-details.html">درخواست های سیری ناپذیر ممکن است قدرت را جمع
-                                            آوری کند.</a></li>
-                                    </ul>
 
-                                </div>
-                            </div>
+                                    {% if page_obj.has_next %}
+                                        <li class="next"><a href="?page=
 
-                            <div class="blog-sidebar-widget categories-widget" data-aos="zoom-in">
-                                <div class="blog-sidebar-widget-inner shadow-box">
-                                    <h3>دسته بندی ها</h3>
-
-                                    <ul>
-                                        <li><a href="blog-details.html">-آنالیز</a></li>
-                                        <li><a href="blog-details.html">-دیواره آتش</a></li>
-                                        <li><a href="blog-details.html">-راه حل های فناوری اطلاعات</a></li>
-                                        <li><a href="blog-details.html">-امنیت</a></li>
-                                        <li><a href="blog-details.html">-تکنولوژی</a></li>
-                                    </ul>
-
-                                </div>
-                            </div>
-
-                            <div class="blog-sidebar-widget tags-widget" data-aos="zoom-in">
-                                <div class="blog-sidebar-widget-inner shadow-box">
-                                    <h3>تگ ها</h3>
-
-                                    <ul>
-                                        <li><a class="theme-btn" href="blog-details.html">سس</a></li>
-                                        <li><a class="theme-btn" href="blog-details.html">توسعه</a></li>
-                                        <li><a class="theme-btn" href="blog-details.html">UI/UX</a></li>
-                                        <li><a class="theme-btn" href="blog-details.html">وب</a></li>
-                                        <li><a class="theme-btn" href="blog-details.html">فیگما</a></li>
-                                        <li><a class="theme-btn" href="blog-details.html">جاوا</a></li>
-                                        <li><a class="theme-btn" href="blog-details.html">وردپرس</a></li>
-                                    </ul>
-
-                                </div>
-                            </div>
-
+                                                {{ page_obj.next_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">
+                                            <span class="fa fa-arrow-right btn btn-primary">>></span></a></li>
+                                    {% endif %}
+                                </ul>
+                            {% endif %}
                         </div>
                     </div>
                 </div>
+                {% include 'includes/sidebar.html' %}
             </div>
         </div>
     </section>

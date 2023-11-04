@@ -1,10 +1,13 @@
+from django.core.paginator import Paginator
+from django.db.models import Q
 from django.shortcuts import render, redirect
 from django.views.generic import ListView, DetailView
 from blog.models import Article, Comment
 
 
 class BlogListView(ListView):
-    queryset = Article.objects.all()
+    model = Article
+    context_object_name = 'articles'
     template_name = 'blog/blogs.html'
     paginate_by = 3
 
@@ -26,3 +29,12 @@ def blog_details(request, slug):
             return redirect('home:main')
 
     return render(request, 'blog/blog_details.html', context={'article': article})
+
+
+def search(request):
+    q = request.GET.get('q')
+    article = Article.objects.filter(Q(title__icontains=q) | Q(body__icontains=q))
+    page_number = request.GET.get('page')
+    paginator = Paginator(article, 1)
+    object_list = paginator.get_page(page_number)
+    return render(request, 'blog/blogs.html', context={'articles': object_list})
