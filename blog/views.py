@@ -2,7 +2,7 @@ from django.core.paginator import Paginator
 from django.db.models import Q
 from django.shortcuts import render, redirect
 from django.views.generic import ListView, DetailView
-from blog.models import Article, Comment
+from blog.models import Article, Comment, Category
 
 
 class BlogListView(ListView):
@@ -38,3 +38,10 @@ def search(request):
     paginator = Paginator(article, 1)
     object_list = paginator.get_page(page_number)
     return render(request, 'blog/blogs.html', context={'articles': object_list})
+
+
+def categories(request, pk=None):
+    category = Category.objects.get(id=pk)
+    articles = category.articles.all()
+
+    return render(request, 'blog/blogs.html', context={'articles': articles})

@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load social_share %}
 
 {% block title %}
 
@@ -27,15 +28,26 @@
                         <div class="img-box">
                             <img src="{{ article.image.url }}" alt="Blog">
                         </div>
-                        <span class="meta">{{ article.created }} - نظرات (4) - اشتراک گذاری (7)</span>
+                        <span class="meta"> تاریخ ایجاد:{{ article.created }} نظر:  {{ article.comments.count }}  </span>
                         <h1>{{ article.title }}</h1>
                         <p>{{ article.author }}</p>
-                        <p>{{ article.category }}</p>
+                        <p>{{ article.category.first }}</p>
                         <p>{{ article.body }}</p>
-                        <div class="tags">
-                            <a href="blog-details.html#" class="theme-btn">سس</a>
-                            <a href="blog-details.html#" class="theme-btn">توسعه</a>
+{#                        <div class="tags">#}
+{#                            <a href="blog-details.html#" class="theme-btn">سس</a>#}
+{#                            <a href="blog-details.html#" class="theme-btn">توسعه</a>#}
+{#                        </div>#}
+
+                        <div class="col-6">
+                            <ul class="fa-share">
+                                <h5>اشتراک گذاری در:</h5>
+                                <li><i class="fa fa-share-alt"></i></li>
+                                <li><i class="fa fa-whatsapp">{% post_to_whatsapp article.get_absolut_url "Whatsapp" %}</i></li>
+                                <li><i class="fa fa-telegram">{% post_to_telegram article.title article.get_absolut_url "Telegram" %}</i></li>
+                                <li><i class="fa fa-linkedin">{% post_to_linkedin article.get_absolut_url %}</i></li>
+                            </ul>
                         </div>
+
 
                         <div class="comments-and-form-wrap">
                             <div class="comments-and-form-wrap-inner shadow-box">
@@ -86,39 +98,39 @@
                                         {% endif %}
                                     {% endfor %}
                                 </div>
-{#                                {% if reguest.user.is_authenticated %}#}
-                                    <div class="comment-form">
-                                        <h2>پاسخ دهید</h2>
+                                {#                                {% if reguest.user.is_authenticated %}#}
+                                <div class="comment-form">
+                                    <h2>پاسخ دهید</h2>
 
-                                        <form method="post">
-                                            {% csrf_token %}
-                                            <div class="input-group">
-                                                <input type="text" name="name" placeholder="نام*">
-                                            </div>
-                                            <div class="input-group">
-                                                <input type="text" name="email" placeholder="ایمیل*">
-                                            </div>
-                                            <div class="input-group">
-                                                <textarea id='body' name="body" placeholder="پیام شما*"></textarea>
-                                            </div>
-                                            <div class="input-group">
-                                                <input type="hidden" id="parent_id" name="parent_id" value="">
-                                            </div>
-                                            <div class="input-group">
-                                                <button class="theme-btn" type="submit">ارسال پیام</button>
-                                            </div>
-                                        </form>
-                                    </div>
-{#                                {% else %}#}
-{#                                    <a class="btn btn-danger" href="{% url 'account:login' %}">for sending comment;#}
-{#                                        please login </a>#}
-{#                                {% endif %}#}
+                                    <form method="post">
+                                        {% csrf_token %}
+                                        <div class="input-group">
+                                            <input type="text" name="name" placeholder="نام*">
+                                        </div>
+                                        <div class="input-group">
+                                            <input type="text" name="email" placeholder="ایمیل*">
+                                        </div>
+                                        <div class="input-group">
+                                            <textarea id='body' name="body" placeholder="پیام شما*"></textarea>
+                                        </div>
+                                        <div class="input-group">
+                                            <input type="hidden" id="parent_id" name="parent_id" value="">
+                                        </div>
+                                        <div class="input-group">
+                                            <button class="theme-btn" type="submit">ارسال پیام</button>
+                                        </div>
+                                    </form>
+                                </div>
+                                {#                                {% else %}#}
+                                {#                                    <a class="btn btn-danger" href="{% url 'account:login' %}">for sending comment;#}
+                                {#                                        please login </a>#}
+                                {#                                {% endif %}#}
                             </div>
                         </div>
 
                     </div>
                 </div>
-            {% include 'includes/sidebar.html' %}
+                {% include 'includes/sidebar.html' %}
             </div>
         </div>
     </section>

@@ -16,12 +16,10 @@
                     <h3>پستهای اخیر</h3>
 
                     <ul>
-                        <li><a href="blog-details.html">اعتراف مشورت شده قدرت حاد است.</a></li>
-                        <li><a href="blog-details.html">درخواست های سیری ناپذیر ممکن است قدرت را جمع
-                            آوری کند.</a></li>
-                        <li><a href="blog-details.html">اکتشاف ناآرام با جدیت هیچ او دستور داد</a></li>
-                        <li><a href="blog-details.html">درخواست های سیری ناپذیر ممکن است قدرت را جمع
-                            آوری کند.</a></li>
+                        {% for item in recent_article %}
+                            <li><a href="{% url 'blog:details' item.slug %}">{{ item.title }} <br>
+                                {{ item.body|truncatewords:7 }}</a></li>
+                        {% endfor %}
                     </ul>
 
                 </div>
@@ -32,11 +30,9 @@
                     <h3>دسته بندی ها</h3>
 
                     <ul>
-                        <li><a href="blog-details.html">-آنالیز</a></li>
-                        <li><a href="blog-details.html">-دیواره آتش</a></li>
-                        <li><a href="blog-details.html">-راه حل های فناوری اطلاعات</a></li>
-                        <li><a href="blog-details.html">-امنیت</a></li>
-                        <li><a href="blog-details.html">-تکنولوژی</a></li>
+                        {% for category in categories %}
+                            <li><a href="{% url 'blog:categories' category.id %}">{{ category.title }}</a></li>
+                        {% endfor %}
                     </ul>
 
                 </div>

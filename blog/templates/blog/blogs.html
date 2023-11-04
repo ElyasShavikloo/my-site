@@ -30,7 +30,7 @@
                                     <img src="{{ article.image.url }}" alt="Blog">
                                 </div>
                                 <div class="content">
-                                    <span class="meta">  {{ article.created }} - نظرات (4) - اشتراک گذاری (7)</span>
+                                    <span class="meta"> تاریخ ایجاد: {{ article.created }}  - نظر: {{ article.comments.count }}  </span>
                                     <h1><a href="{{ article.get_absolut.url }}">{{ article.title }}</a></h1>
                                     <p>{{ article.body|truncatewords:70 }}</p>
                                     <a href="{% url 'blog:details' article.slug %}" class="theme-btn">بیشتر بخوانید</a>

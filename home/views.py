@@ -25,3 +25,5 @@ class ContactUsView(FormView):
         return super().form_valid(form)
 
 
+
+
