@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    ثبت نام
+{% endblock %}
+
+{% block content %}
+    <!-- Contact -->
+    <section class="contact-area">
+        <div class="container">
+            <div class="gx-row d-flex justify-content-between gap-24">
+                {% include 'includes/account_sidebar.html' %}
+                <div data-aos="zoom-in" class="contact-form">
+                    <div class="shadow-box">
+                        <h3>ثبت نام</h3>
+                        <br><br>
+                        <form method="post" class="input-group">
+                            {% csrf_token %}
+
+                            {% if errors %}
+                                {% for item in errors %}
+                                    <p class="text text-danger bg-white rounded mb-2">{{ item }}</p>
+                                {% endfor %}
+                            {% endif %}
+
+
+                            <div class="input-group">
+                                <input type="text" name="username" id="username" placeholder="نام کاربری *">
+                            </div>
+
+                            <div class="input-group">
+                                <input type="email" name="email" id="email" placeholder="ایمیل *">
+                            </div>
+
+                            <div class="input-group">
+                                <input type="password" name="password1" placeholder="رمز عبور *">
+                            </div>
+
+                            <div class="input-group">
+                                <input type="password" name="password2" placeholder="تکرار رمز عبور *">
+                            </div>
+
+                            <div class="input-group">
+                                <button class="theme-btn submit-btn" name="submit" type="submit">ثبت نام</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+{% endblock %}

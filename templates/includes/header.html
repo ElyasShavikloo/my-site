@@ -9,15 +9,52 @@
 
             <nav class="navbar">
                 <ul class="menu">
-                    <li class="active"><a href="index.html">خانه</a></li>
-                    <li><a href="about.html">درباره من</a></li>
+                    <li class="{% if request.resolver_match.url_name == 'main' %} active {% endif %}"><a
+                            href="{% url 'home:main' %}">خانه</a></li>
+                    <li class="{% if request.resolver_match.url_name == 'about' %} active {% endif %}"><a
+                            href="{% url 'home:about' %}">درباره من</a></li>
                     <li><a href="works.html">کارهای من</a></li>
-                    <li><a href="{% url 'home:contact' %}">تماس با من</a></li>
+                    <li class="{% if request.resolver_match.url_name == 'contact' %} active {% endif %}"><a
+                            href="{% url 'home:contact' %}">تماس با من</a></li>
+                    <li>
+                        {% if request.user.is_authenticated %}
+                            <div class="d-flex">
+                                {% if request.user.first_name %}
+                                    <div class="profile_image">
+                                        {% if user.profile.user_image %}
+                                            <span class="profile_image"><img class="profile_image"
+                                                                             src="{{ user.profile.user_image.url }}"
+                                                                             alt="img"></span>
+                                        {% else %}
+                                            <span class="profile_image"><img class="profile_image"
+                                                                             src="{% static 'images/icons/profile_user.png' %}"
+                                                                             alt="img"></span>
+                                        {% endif %}
+                                    </div>
+                                    <a class="nav-link"
+                                       href="">{{ request.user.first_name }} {{ request.user.last_name }} </a>
+                                {% else %}
+                                    <a class="nav-link"
+                                       href="">{{ request.user.username }} </a>
+                                {% endif %}
+
+                                <a href="{% url 'account:logout' %}"><span
+                                        class="badge badge-danger mt-2">خروج از حساب</span></a>
+                                {#                                <a href="{% url 'account:edit' %}"><span#}
+                                {#                                        class="badge badge-primary mt-4">edit</span></a>#}
+                            </div>
+                        {% else %}
+                            <div class="d-flex">
+                                <a class="nav-link" href="{% url 'account:login' %}">ورود *</a>
+
+                                <a class="nav-link" href="{% url 'account:register' %}">* ثبت نام</a>
+                            </div>
+                        {% endif %}
+                    </li>
                 </ul>
-                <a href="contact.html" class="theme-btn">بیا حرف بزنیم</a>
             </nav>
 
-            <a href="contact.html" class="theme-btn">بیا حرف بزنیم</a>
+            <a href="{% url 'home:contact' %}" class="theme-btn">بیا حرف بزنیم</a>
 
             <div class="show-menu">
                 <span></span>

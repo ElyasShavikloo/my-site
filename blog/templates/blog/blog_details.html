@@ -3,16 +3,16 @@
 {% load social_share %}
 
 {% block title %}
-
+{{ article.title }}
 {% endblock %}
 
-{% block contact %}
+{% block content %}
     <!-- Breadcrumb -->
     <section class="breadcrumb-area">
         <div class="container">
             <div class="breadcrumb-content" data-aos="fade-up">
                 <p>خانه - جزئیات وبلاگ</p>
-                <h1 class="section-heading"><img src="{% static 'images/star-2.png' %}" alt="Star"> جزئیات وبلاگ <img
+                <h1 class="section-heading"><img src="{% static 'images/star-2.png' %}" alt="Star"> {{ article.title }} <img
                         src="{% static 'images/star-2.png' %}" alt="Star"></h1>
             </div>
         </div>
