@@ -4,8 +4,8 @@
 
             <div class="blog-sidebar-widget search-widget">
                 <div class="blog-sidebar-widget-inner" data-aos="zoom-in">
-                    <form class="shadow-box" method="GET" name="gs" action="{% url 'blog:search' %}">
-                        <input type="text" name="q" placeholder="اینجا جستجو کنید..." autocomplete="on">
+                    <form class="shadow-box" method="get" action="{% url 'blog:result' %}">
+                        <input type="text" name="result" placeholder="اینجا جستجو کنید..." autocomplete="on">
                         <button class="theme-btn">جستجو</button>
                     </form>
                 </div>
@@ -17,7 +17,7 @@
 
                     <ul>
                         {% for item in recent_article %}
-                            <li><a href="{% url 'blog:details' item.slug %}">{{ item.title }} <br>
+                            <li><a href="{% url 'blog:article_details' item.slug %}">{{ item.title }} <br>
                                 {{ item.body|truncatewords:7 }}</a></li>
                         {% endfor %}
                     </ul>
@@ -38,22 +38,6 @@
                 </div>
             </div>
 
-            <div class="blog-sidebar-widget tags-widget" data-aos="zoom-in">
-                <div class="blog-sidebar-widget-inner shadow-box">
-                    <h3>تگ ها</h3>
-
-                    <ul>
-                        <li><a class="theme-btn" href="blog-details.html">سس</a></li>
-                        <li><a class="theme-btn" href="blog-details.html">توسعه</a></li>
-                        <li><a class="theme-btn" href="blog-details.html">UI/UX</a></li>
-                        <li><a class="theme-btn" href="blog-details.html">وب</a></li>
-                        <li><a class="theme-btn" href="blog-details.html">فیگما</a></li>
-                        <li><a class="theme-btn" href="blog-details.html">جاوا</a></li>
-                        <li><a class="theme-btn" href="blog-details.html">وردپرس</a></li>
-                    </ul>
-
-                </div>
-            </div>
 
         </div>
     </div>

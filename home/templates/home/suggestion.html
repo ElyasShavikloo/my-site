@@ -1,0 +1,146 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    ارائه خدمات
+{% endblock %}
+
+{% block content %}
+    <!-- Service -->
+    <section class="service-area">
+        <div class="container">
+            <h1 class="section-heading" data-aos="fade-up"><img src="{% static 'images/star-2.png' %}" alt="Star">
+                پیشنهادات من
+                <img src="{% static 'images/star-2.png' %}" alt="Star"></h1>
+
+            <div class="row">
+
+                <!-- Sidebar -->
+                <div class="col-md-4">
+                    <div class="service-sidebar" data-aos="fade-right">
+                        <div class="service-sidebar-inner shadow-box">
+                            <ul>
+                                <li>
+                                    <i class="iconoir-design-pencil icon"></i>
+                                    توسعه وب
+                                </li>
+                                <li>
+                                    <i class="iconoir-color-filter icon"></i>
+                                    برنامه نویسی
+                                </li>
+                                <li>
+                                    <i class="iconoir-dev-mode-phone icon"></i>
+                                    توسعه
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Content -->
+                <div class="col-md-8">
+                    <h1 class="section-heading" data-aos="fade-up"><img src="{% static 'images/star-2.png' %}"
+                                                                        alt="Star">
+                        پیشنهادات من <img src="{% static 'images/star-2.png' %}" alt="Star"></h1>
+
+                    <div class="service-content-wrap" data-aos="zoom-in">
+                        <div class="service-content-inner shadow-box">
+                            <div class="service-items">
+                                <div class="service-item">
+                                    <h3>توسعه وب</h3>
+                                    <p>
+                                        جنگو یک فریم‌ورک متن‌باز پایتون است که برای توسعه برنامه‌های وب قدرتمند و قابل
+                                        اعتماد طراحی شده است. این فریم‌ورک دارای ویژگی‌های متعددی است که آن را به یک
+                                        انتخاب محبوب برای توسعه‌دهندگان وب تبدیل کرده است، از جمله سرعت توسعه بالا،
+                                        سادگی، امنیت و مقیاس‌پذیری. جنگو برای توسعه طیف گسترده‌ای از برنامه‌های وب
+                                        استفاده می‌شود، از جمله وب‌سایت‌های خبری و تجاری، اجتماعات آنلاین و اپلیکیشن‌های
+                                        وب تحت وب.
+
+                                        در یک جمله: جنگو یک فریم‌ورک قدرتمند، انعطاف‌پذیر و آسان‌یادگیری برای توسعه
+                                        برنامه‌های وب است.</p>
+                                </div>
+                                <div class="service-item">
+                                    <h3>برنامه نویسی</h3>
+                                    <p>
+                                        پایتون یک زبان برنامه نویسی همه منظوره، قدرتمند و انعطاف‌پذیر است که به دلیل
+                                        خوانایی بالا و سادگی یادگیری، محبوبیت زیادی پیدا کرده است. این زبان برای توسعه
+                                        طیف گسترده‌ای از برنامه‌ها، از جمله برنامه‌های وب، برنامه‌های دسکتاپ، برنامه‌های
+                                        موبایل، برنامه‌های هوش مصنوعی و یادگیری ماشین، استفاده می‌شود.
+
+                                        در یک جمله: پایتون یک زبان برنامه نویسی قدرتمند، آسان‌یادگیری و همه‌منظوره
+                                        است.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="row mt-24">
+                <div class="col-md-12">
+                    <div class="d-flex profile-contact-credentials-wrap gap-24">
+
+                        <div data-aos="zoom-in">
+                            <div class="about-profile-box info-box shadow-box h-full">
+                                <img src="{% static 'images/bg1.png' %}" alt="BG" class="bg-img">
+                                <div class="inner-profile-icons shadow-box">
+                                    <a href="https://github.com/ElyasShavikloo">
+                                        <i class="iconoir-github"></i>
+                                    </a>
+                                    <a href="https://www.linkedin.com/in/elyas-shavikloo-b82751284/">
+                                        <i class="iconoir-linkedin"></i>
+                                    </a>
+                                </div>
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <div class="infos">
+                                        <h4>تماس با من</h4>
+                                        <h1>پروفایل ها</h1>
+                                    </div>
+
+                                    <a href="{% url 'home:contact' %}" class="about-btn">
+                                        <img id="rdt" src="{% static 'images/icon.svg' %}" alt="Button">
+                                    </a>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div data-aos="zoom-in" class="flex-1">
+                            <div class="about-contact-box info-box shadow-box">
+                                <a class="overlay-link" href="{% url 'home:contact' %}"></a>
+                                <img src="{% static 'images/bg1.png' %}" alt="BG" class="bg-img">
+                                <img src="{% static 'images/icon2.png' %}" alt="Icon" class="star-icon">
+                                <h1>بیایید <br>با هم <span>کار کنیم.</span></h1>
+                                <a href="{% url 'home:contact' %}" class="about-btn">
+                                    <img id="rdt" src="{% static 'images/icon.svg' %}" alt="Button">
+                                </a>
+                            </div>
+                        </div>
+
+                        <div data-aos="zoom-in" class="h-full">
+                            <div class="about-crenditials-box info-box shadow-box">
+                                <a class="overlay-link" href="{% url 'home:credentials' %}"></a>
+                                <img src="{% static 'images/bg1.png' %}" alt="BG" class="bg-img">
+                                <img src="{% static 'images/sign.png' %}" alt="Sign">
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <div class="infos">
+                                        <h4>بیشتر در مورد من</h4>
+                                        <h1>اعتبارنامه</h1>
+                                    </div>
+
+                                    <a href="{% url 'home:credentials' %}" class="about-btn">
+                                        <img id="rdt" src="{% static 'images/icon.svg' %}" alt="Button">
+                                    </a>
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

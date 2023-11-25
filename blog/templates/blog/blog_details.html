@@ -3,7 +3,7 @@
 {% load social_share %}
 
 {% block title %}
-{{ article.title }}
+    {{ article.title }}
 {% endblock %}
 
 {% block content %}
@@ -12,8 +12,9 @@
         <div class="container">
             <div class="breadcrumb-content" data-aos="fade-up">
                 <p>خانه - جزئیات وبلاگ</p>
-                <h1 class="section-heading"><img src="{% static 'images/star-2.png' %}" alt="Star"> {{ article.title }} <img
-                        src="{% static 'images/star-2.png' %}" alt="Star"></h1>
+                <h1 class="section-heading"><img src="{% static 'images/star-2.png' %}" alt="Star"> {{ article.title }}
+                    <img
+                            src="{% static 'images/star-2.png' %}" alt="Star"></h1>
             </div>
         </div>
     </section>
@@ -33,20 +34,44 @@
                         <p>{{ article.author }}</p>
                         <p>{{ article.category.first }}</p>
                         <p>{{ article.body }}</p>
-{#                        <div class="tags">#}
-{#                            <a href="blog-details.html#" class="theme-btn">سس</a>#}
-{#                            <a href="blog-details.html#" class="theme-btn">توسعه</a>#}
-{#                        </div>#}
 
                         <div class="col-6">
-                            <ul class="fa-share">
-                                <h5>اشتراک گذاری در:</h5>
-                                <li><i class="fa fa-share-alt"></i></li>
-                                <li><i class="fa fa-whatsapp">{% post_to_whatsapp article.get_absolut_url "Whatsapp" %}</i></li>
-                                <li><i class="fa fa-telegram">{% post_to_telegram article.title article.get_absolut_url "Telegram" %}</i></li>
-                                <li><i class="fa fa-linkedin">{% post_to_linkedin article.get_absolut_url %}</i></li>
+                            <ul>
+                                {% if is_liked %}
+                                    <li>
+                                        <span type="submit" onclick="like('{{ article.slug }}', '{{ article.id }}')"><i
+                                                id="like"
+                                                style="font-size: 20px; color: red"
+                                                class="fa fa-heart"></i></span>
+                                        <span id="count">{{ article.likes.all.count }}</span>
+                                    </li>
+                                {% else %}
+                                    <li>
+                                        <span type="submit" onclick="like('{{ article.slug }}', '{{ article.id }}')"><i
+                                                id="like"
+                                                style="font-size: 20px; color: red"
+                                                class="fa fa-heart-o"></i></span>
+                                        <span id="count">{{ article.likes.all.count }}</span>
+                                    </li>
+                                {% endif %}
                             </ul>
                         </div>
+                        <br>
+
+                        <div class="col-7">
+                            <div>
+                                <ul class="fa-share">
+                                    <li><i class="fa fa-share-alt"></i></li>
+                                    <li>
+                                        <i class="fa fa-whatsapp">{% post_to_whatsapp article.get_absolut_url "Whatsapp" %}</i>
+                                    </li>
+                                    <li>
+                                        <i class="fa fa-telegram">{% post_to_telegram article.title article.get_absolut_url "Telegram" %}</i>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        {#                        {% render_comments obj request %}#}
 
 
                         <div class="comments-and-form-wrap">
@@ -98,33 +123,26 @@
                                         {% endif %}
                                     {% endfor %}
                                 </div>
-                                {#                                {% if reguest.user.is_authenticated %}#}
-                                <div class="comment-form">
-                                    <h2>پاسخ دهید</h2>
+                                {% if request.user.is_authenticated%}
+                                    <div class="comment-form" id="comment-form-area">
+                                        <h2>پاسخ دهید</h2>
 
-                                    <form method="post">
-                                        {% csrf_token %}
-                                        <div class="input-group">
-                                            <input type="text" name="name" placeholder="نام*">
-                                        </div>
-                                        <div class="input-group">
-                                            <input type="text" name="email" placeholder="ایمیل*">
-                                        </div>
-                                        <div class="input-group">
-                                            <textarea id='body' name="body" placeholder="پیام شما*"></textarea>
-                                        </div>
-                                        <div class="input-group">
-                                            <input type="hidden" id="parent_id" name="parent_id" value="">
-                                        </div>
-                                        <div class="input-group">
-                                            <button class="theme-btn" type="submit">ارسال پیام</button>
-                                        </div>
-                                    </form>
-                                </div>
-                                {#                                {% else %}#}
-                                {#                                    <a class="btn btn-danger" href="{% url 'account:login' %}">for sending comment;#}
-                                {#                                        please login </a>#}
-                                {#                                {% endif %}#}
+                                        <form method="post" id="comment_form">
+                                            {% csrf_token %}
+                                            <div class="input-group">
+                                                <textarea id='body' name="body" placeholder="پیام شما*"></textarea>
+                                            </div>
+                                            <div class="input-group">
+                                                <input type="hidden" id="parent_id" name="parent_id" value="">
+                                            </div>
+                                            <div class="input-group">
+                                                <button class="theme-btn" type="submit">ارسال پیام</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                {% else %}
+                                    <a class="btn btn-danger" href="{% url 'account:login' %}">برای ارسال نظر لطفا ثبت نام کنید یا وارد شوید</a>
+                                {% endif %}
                             </div>
                         </div>
 
@@ -143,3 +161,5 @@
 
     </script>
 {% endblock %}
+
+

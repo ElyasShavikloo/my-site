@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% if request.user.is_authenticated %}
+    <div class="comment-form" id="comment-form-area">
+        <h2>پاسخ دهید</h2>
+
+        <form method="post" id="comment_form">
+            {% csrf_token %}
+            {{ form }}
+            <div class="input-group">
+                <button class="theme-btn" type="submit">ارسال پیام</button>
+            </div>
+        </form>
+    </div>
+{% else %}
+    <a class="btn btn-danger" href="{% url 'account:login' %}">برای ارسال نظر لطفا ثبت نام کنید یا وارد شوید</a>
+{% endif %}
+</body>
+</html>

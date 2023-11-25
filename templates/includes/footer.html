@@ -3,14 +3,22 @@
 <footer class="footer-area">
     <div class="container">
         <div class="footer-content text-center">
-            <a href="index.html" class="logo">
-                <img width="170px" height="40px" src="{% static 'images/logo/logo-main.jpg' %}" alt="Logo">
+            <a href="/" class="logo">
+                <img width="170px" height="40px" src="{% static 'images/logo/logo-main.jpg' %}" alt="لوگوی وب‌سایت من">
             </a>
             <ul class="footer-menu">
-                <li><a href="index.html">خانه</a></li>
-                <li><a href="about.html">درباره</a></li>
-                <li><a href="works.html">کارها</a></li>
-                <li><a href="contact.html">تماس با ما</a></li>
+                <li{% if request.resolver_match.url_name == 'main' %} class="active"{% endif %}>
+                    <a href="/">خانه</a>
+                </li>
+                <li{% if request.resolver_match.url_name == 'about' %} class="active"{% endif %}>
+                    <a href="{% url 'home:about' %}">درباره</a>
+                </li>
+                <li{% if request.resolver_match.url_name == 'projects_list' %} class="active"{% endif %}>
+                    <a href="{% url 'home:projects_list' %}">کارها</a>
+                </li>
+                <li{% if request.resolver_match.url_name == 'contact' %} class="active"{% endif %}>
+                    <a href="{% url 'home:contact' %}">تماس با ما</a>
+                </li>
             </ul>
         </div>
     </div>

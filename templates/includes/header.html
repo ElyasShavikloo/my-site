@@ -3,8 +3,8 @@
 <header class="header-area">
     <div class="container">
         <div class="gx-row d-flex align-items-center justify-content-between">
-            <a href="index.html" class="logo">
-                <img src="{% static 'images/logo.svg' %}" alt="Logo">
+            <a href="{% url 'home:main' %}" class="logo">
+                <img height="47px" src="{% static 'images/logo/logo-main.jpg' %}" alt="Logo">
             </a>
 
             <nav class="navbar">
@@ -13,7 +13,7 @@
                             href="{% url 'home:main' %}">خانه</a></li>
                     <li class="{% if request.resolver_match.url_name == 'about' %} active {% endif %}"><a
                             href="{% url 'home:about' %}">درباره من</a></li>
-                    <li><a href="works.html">کارهای من</a></li>
+                    <li><a href="{% url 'home:projects_list' %}">کارهای من</a></li>
                     <li class="{% if request.resolver_match.url_name == 'contact' %} active {% endif %}"><a
                             href="{% url 'home:contact' %}">تماس با من</a></li>
                     <li>
@@ -40,8 +40,6 @@
 
                                 <a href="{% url 'account:logout' %}"><span
                                         class="badge badge-danger mt-2">خروج از حساب</span></a>
-                                {#                                <a href="{% url 'account:edit' %}"><span#}
-                                {#                                        class="badge badge-primary mt-4">edit</span></a>#}
                             </div>
                         {% else %}
                             <div class="d-flex">

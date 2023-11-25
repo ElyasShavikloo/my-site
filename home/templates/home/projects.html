@@ -1,0 +1,151 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    پروژه ها
+{% endblock %}
+
+{% block content %}
+    <!-- Projects -->
+    <section class="projects-area">
+        <div class="container">
+            <h1 class="section-heading" data-aos="fade-up"><img src="{% static 'images/star-2.png' %}" alt="Star"> همه
+                پروژه ها
+                <img src="{% static 'images/star-2.png' %}" alt="Star"></h1>
+            <div class="row">
+                <div class="col-md-4">
+                    <div data-aos="zoom-in">
+                        {% for project in object_list %}
+                            <div class="project-item shadow-box">
+                                <a class="overlay-link" href="{% url 'home:project_detail' project.slug %}"></a>
+                                <img src="{% static 'images/bg1.png' %}" alt="BG" class="bg-img">
+                                <div class="project-img">
+                                    <img src="{{ project.image.url }}" alt="Project">
+                                </div>
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <div class="project-info">
+                                        <p>{{ project.category.first }}</p>
+                                        <h1>{{ project.title }}</h1>
+                                    </div>
+                                    <a href="{% url 'home:project_detail' project.slug %}" class="project-btn">
+                                        <img id="rdt" src="{% static 'images/icon.svg' %}" alt="Button">
+                                    </a>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+
+                    {#                    <div data-aos="zoom-in">#}
+                    {#                        <div class="project-item shadow-box">#}
+                    {#                            <a class="overlay-link" href="work-details.html"></a>#}
+                    {#                            <img src="assets/images/bg1.png" alt="BG" class="bg-img">#}
+                    {#                            <div class="project-img">#}
+                    {#                                <img src="assets/images/project2.jpeg" alt="Project">#}
+                    {#                            </div>#}
+                    {#                            <div class="d-flex align-items-center justify-content-between">#}
+                    {#                                <div class="project-info">#}
+                    {#                                    <p>عکاسی</p>#}
+                    {#                                    <h1>دیزل H1</h1>#}
+                    {#                                </div>#}
+                    {#                                <a href="work-details.html" class="project-btn">#}
+                    {#                                    <img id="rdt" src="assets/images/icon.svg" alt="Button">#}
+                    {#                                </a>#}
+                    {#                            </div>#}
+                    {#                        </div>#}
+                    {#                    </div>#}
+
+                </div>
+                <div class="col-md-8">
+                    <h1 class="section-heading" data-aos="fade-up"><img src="{% static 'images/star-2.png' %}"
+                                                                        alt="Star"> همه
+                        پروژه ها <img src="{% static 'images/star-2.png' %}" alt="Star"></h1>
+
+                    {% for project in object_list %}
+                        <div class="d-flex align-items-start gap-24">
+                            <div data-aos="zoom-in" class="flex-1">
+                                <div class="project-item shadow-box">
+                                    <a class="overlay-link" href="{% url 'home:project_detail' project.slug %}"></a>
+                                    <img src="{% static 'images/bg1.png' %}" alt="BG" class="bg-img">
+                                    <div class="project-img">
+                                        <img src="{{ project.image.url }}" alt="Project">
+                                    </div>
+                                    <div class="d-flex align-items-center justify-content-between">
+                                        <div class="project-info">
+                                            <p>{{ project.category }}</p>
+                                            <h1>{{ project.title }}</h1>
+                                        </div>
+                                        <a href="{% url 'home:project_detail' project.slug %}" class="project-btn">
+                                            <img id="rdt" src="{% static 'images/icon.svg' %}" alt="Button">
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            {##}
+                            {#                        <div data-aos="zoom-in" class="flex-1">#}
+                            {#                            <div class="project-item shadow-box">#}
+                            {#                                <a class="overlay-link" href="work-details.html"></a>#}
+                            {#                                <img src="assets/images/bg1.png" alt="BG" class="bg-img">#}
+                            {#                                <div class="project-img">#}
+                            {#                                    <img src="assets/images/project4.jpeg" alt="Project">#}
+                            {#                                </div>#}
+                            {#                                <div class="d-flex align-items-center justify-content-between">#}
+                            {#                                    <div class="project-info">#}
+                            {#                                        <p>نام تجاری</p>#}
+                            {#                                        <h1>استدیو ریون</h1>#}
+                            {#                                    </div>#}
+                            {#                                    <a href="work-details.html" class="project-btn">#}
+                            {#                                        <img id="rdt" src="assets/images/icon.svg" alt="Button">#}
+                            {#                                    </a>#}
+                            {#                                </div>#}
+                            {#                            </div>#}
+                            {#                        </div>#}
+                            {#                    </div>#}
+
+                            {#                    <div class="d-flex align-items-start gap-24">#}
+                            {#                        <div data-aos="zoom-in" class="flex-1">#}
+                            {#                            <div class="project-item shadow-box">#}
+                            {#                                <a class="overlay-link" href="work-details.html"></a>#}
+                            {#                                <img src="assets/images/bg1.png" alt="BG" class="bg-img">#}
+                            {#                                <div class="project-img">#}
+                            {#                                    <img src="assets/images/project5.jpeg" alt="Project">#}
+                            {#                                </div>#}
+                            {#                                <div class="d-flex align-items-center justify-content-between">#}
+                            {#                                    <div class="project-info">#}
+                            {#                                        <p>طراحی موبایل</p>#}
+                            {#                                        <h1>زیردریایی</h1>#}
+                            {#                                    </div>#}
+                            {#                                    <a href="work-details.html" class="project-btn">#}
+                            {#                                        <img id="rdt" src="assets/images/icon.svg" alt="Button">#}
+                            {#                                    </a>#}
+                            {#                                </div>#}
+                            {#                            </div>#}
+                            {#                        </div>#}
+                            {##}
+                            {#                        <div data-aos="zoom-in" class="flex-1">#}
+                            {#                            <div class="project-item shadow-box">#}
+                            {#                                <a class="overlay-link" href="work-details.html"></a>#}
+                            {#                                <img src="assets/images/bg1.png" alt="BG" class="bg-img">#}
+                            {#                                <div class="project-img">#}
+                            {#                                    <img src="assets/images/project6.jpeg" alt="Project">#}
+                            {#                                </div>#}
+                            {#                                <div class="d-flex align-items-center justify-content-between">#}
+                            {#                                    <div class="project-info">#}
+                            {#                                        <p>طراحی وب</p>#}
+                            {#                                        <h1>دختر هیدرا</h1>#}
+                            {#                                    </div>#}
+                            {#                                    <a href="work-details.html" class="project-btn">#}
+                            {#                                        <img id="rdt" src="assets/images/icon.svg" alt="Button">#}
+                            {#                                    </a>#}
+                            {#                                </div>#}
+                            {#                            </div>#}
+                            {##}
+                            {#                        </div>#}
+                            {#                    </div>#}
+
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
